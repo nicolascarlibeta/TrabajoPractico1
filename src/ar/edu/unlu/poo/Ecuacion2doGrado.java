@@ -4,6 +4,17 @@ import java.util.ArrayList;
 
 public class Ecuacion2doGrado {
 
+    /*  //ESTRUCTURA
+
+        Coeficiente a, b y c
+
+        //COMPORTAMIENTO
+
+        VerEcuacion()
+        CalcularRaices()
+        CalcularEcuacion()
+
+        */
     private double a = 0, b = 0, c = 0;
 
     //CONSTRUCTOR

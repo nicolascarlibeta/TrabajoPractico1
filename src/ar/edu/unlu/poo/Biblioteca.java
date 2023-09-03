@@ -4,6 +4,29 @@ import java.util.ArrayList;
 
 public class Biblioteca {
 
+    /*  //ESTRUCTURA
+
+    Estanteria
+
+    //COMPORTAMIENTO
+
+    CargarLibro()
+    VerEstanteria()
+    BuscarLibro()
+    MostrarLibrosPorTitulo()
+    CantidadTotalDePrestamos()
+
+    //RESPONSABILIDAD
+
+    * Crear instancias de Biblioteca
+    * Permitir añadir una instancia de la clase Libro a una instancia Biblioteca
+    * Permitir buscar una instancia de la clase Libro
+    * Mostrar los datos de una instancia Libro por titulo
+    * Mostrar la cantidad total de prestamos que se efectuan en una instancia Biblioteca
+
+    */
+
+
     //Debemos primero INICIALIZAR la variable de ArrayList
     private final ArrayList<Libro> estanteria = new ArrayList<>();
 
@@ -19,7 +42,7 @@ public class Biblioteca {
     //VerEstanteria()
     public void ver(){
         for(int i = 0; i < estanteria.size(); i++){
-            estanteria.get(i).verDescripcion();
+            System.out.println(estanteria.get(i));
         }
     }
 
@@ -41,35 +64,8 @@ public class Biblioteca {
         return libroActual;
     }
 
-    //PrestarLibro()
-    public void prestar(String titulo){
-      Libro libroAPrestar = buscar(titulo);
-      if(libroAPrestar == null){
-          System.out.println("<El libro no se encuentra o no esta disponible.>");
-      }
-      else if(libroAPrestar.getEjemDisponibles() > 1){
-          libroAPrestar.setEjemPrestados(libroAPrestar.getEjemPrestados()+1);
-          libroAPrestar.setEjemDisponibles(libroAPrestar.getEjemDisponibles()-1);
-      }
-      else{
-          System.out.println("<NO se puede prestar este libro, solo queda (un) ejemplar.>");
-      }
-    }
-
-    //DevolverLibro()
-    public void devolver(String titulo){
-      Libro libroADevolver = buscar(titulo);
-      if(libroADevolver == null){
-          System.out.println("<El libro no se encuentra o no esta disponible.>");
-      }
-      else{
-          libroADevolver.setEjemPrestados(libroADevolver.getEjemPrestados()-1);
-          libroADevolver.setEjemDisponibles(libroADevolver.getEjemDisponibles()+1);
-      }
-    }
-
-    //VerDescripciónLibro()
-    public void verDescripcionLibro(String titulo){
+    //MostrarLibrosPorTitulo()
+    public void mostrarLibrosPorTitulo(String titulo){
         Libro libroAMostrar = buscar(titulo);
         if(libroAMostrar != null){
             libroAMostrar.verDescripcion();

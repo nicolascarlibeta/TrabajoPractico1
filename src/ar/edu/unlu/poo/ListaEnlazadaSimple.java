@@ -14,8 +14,6 @@ public class ListaEnlazadaSimple {
 
     //INTERFAZ, METODOS:
 
-    //Estructura: <public,private,etc.> <¿static?> <valor de retorno> <nombre>
-
     //EsVacia()
     public boolean esVacia(){
         return inicio == null;
