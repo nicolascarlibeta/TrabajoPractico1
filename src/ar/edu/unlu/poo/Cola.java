@@ -1,8 +1,12 @@
 package ar.edu.unlu.poo;
 
 public class Cola {
-
-    //ENCAPSULAMIENTO (NO se deben acceder a los atributos de la clase
+    /* RESPONSABILIDAD
+     * Servir como estructura de Cola para guardar instancias de Nodos,
+     * ofreciendo diferentes metodos para la administracion de los datos que se guardan
+     * en la misma.
+     *
+     */    //ENCAPSULAMIENTO (NO se deben acceder a los atributos de la clase
     // por fuera de esta)
     private Nodo frente = null, fin = null;
 
@@ -52,13 +56,14 @@ public class Cola {
 
     }
 
+    //MostrarCola()
     public String toString(){
         Nodo actual=new Nodo();
         String dato="";
-        actual=frente;
+        actual = frente;
         while(actual != null){
-            dato=dato+actual.getDatos()+" ";
-            actual=actual.getSiguiente();
+            dato = dato + actual.getDatos() + " ";
+            actual = actual.getSiguiente();
         }
         return dato;
     }

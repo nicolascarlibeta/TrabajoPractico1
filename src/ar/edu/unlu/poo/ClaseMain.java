@@ -7,9 +7,18 @@ public class ClaseMain {
         TrabajoPractico tp1 = new TrabajoPractico();
 
         //Ejercicio 1: Lista enlazada simple
-        tp1.ejercicio1();
+        //tp1.ejercicio1();
 
-        //Ejercicio 6: Lista De Tareas
+        //Ejercicio 3: Pila
+        //tp1.ejercicio3();
+
+        //Ejercicio 4: Cola
+        //tp1.ejercicio4();
+
+        //Ejercicio 5: Lista De Tareas
+        //tp1.ejercicio5();
+
+        //Ejercicio 6
         //tp1.ejercicio6();
 
         //Ejercicio 7
@@ -22,6 +31,12 @@ public class ClaseMain {
         //tp1.ejercicio9();
 
         //Ejercicio 10
+        //tp1.ejercicio10();
+
+        //Ejercicio 11
+        //tp1.ejercicio11();
+
+
 
 
 

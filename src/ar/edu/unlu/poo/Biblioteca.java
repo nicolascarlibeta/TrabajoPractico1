@@ -64,8 +64,8 @@ public class Biblioteca {
         return libroActual;
     }
 
-    //MostrarLibrosPorTitulo()
-    public void mostrarLibrosPorTitulo(String titulo){
+    //MostrarLibroPorTitulo()
+    public void mostrarLibroPorTitulo(String titulo){
         Libro libroAMostrar = buscar(titulo);
         if(libroAMostrar != null){
             libroAMostrar.verDescripcion();

@@ -1,9 +1,9 @@
 package ar.edu.unlu.poo;
 
-/*Un OBJETO debe poseer 3 caracteristicas:
- * Estado (CARACTERÍSTICAS, ATRIBUTOS)
- * Comportamiento (MÉTODOS)
- * Identidad (UNICIDAD, DISTINCIÓN)
+/* RESPONSABILIDAD
+* Servir como estructura de Pila para guardar instancias de Nodos,
+* ofreciendo diferentes metodos para la administracion de los datos que se guardan
+* en la misma.
  */
 public class Pila{
 
@@ -43,6 +43,18 @@ public class Pila{
     //Tope()
     public Object tope(){
         return tope.getDatos();
+    }
+
+    //MostrarPila()
+    public String toString(){
+        Nodo actual=new Nodo();
+        String dato="";
+        actual = tope;
+        while(actual != null){
+            dato = dato + actual.getDatos() + "\n";
+            actual = actual.getSiguiente();
+        }
+        return dato;
     }
 
 

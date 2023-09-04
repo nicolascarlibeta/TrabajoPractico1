@@ -5,6 +5,12 @@ public class Nodo {
     private Object datos;
     private Nodo siguiente = null;
 
+    /* RESPONSABILIDAD
+     * La clase Nodo representa un concepto computacional del nodo, el cual
+     * contiene un elemento (los datos a guardar en el mismo) y un enlace
+     * o direccion a una instancia diferente de su propia Clase.
+     */
+
     //Vamos a implementar los METODOS de los nodos, de forma que solo se puedan acceder a sus
     //datos de forma publica, sin afectar la privacidad de los datos
 

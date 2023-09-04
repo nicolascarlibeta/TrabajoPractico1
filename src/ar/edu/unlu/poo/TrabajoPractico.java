@@ -20,13 +20,60 @@ public class TrabajoPractico {
 
     public void ejercicio1(){
 
+        ListaEnlazadaSimple lista = new ListaEnlazadaSimple();
+        lista.agregar("Hola");
+        lista.agregar("mundo");
+        lista.agregar("!");
+        System.out.println(lista);
+        lista.insertar("¡",1);
+        System.out.println(lista);
+        lista.agregar("!");
+        System.out.println(lista);
+        lista.eliminar(2);
+        System.out.println(lista);
+
+    }
+
+    public void ejercicio3(){
+
+        Pila pila = new Pila();
+        pila.apilar("Hola");
+        pila.apilar("mundo");
+        pila.apilar("!");
+        System.out.println(pila);
+        pila.apilar("¡");
+        System.out.println(pila);
+        pila.desapilar();
+        System.out.println(pila);
+
+    }
+
+    public void ejercicio4(){
+
+        Cola cola = new Cola();
+        cola.encolar("Hola");
+        cola.encolar("mundo");
+        cola.encolar("!");
+        System.out.println(cola);
+        cola.encolar("¡");
+        System.out.println(cola);
+        cola.desencolar();
+        System.out.println(cola);
+
+    }
+
+    public void ejercicio5(){
+
+        System.out.println("Aclaración: En la implementacion de las clases ToDoList y Tarea " +
+                "se encuentran los cambios realizados pedidos por los ejercicios 10, 12 y 13. Es decir, " +
+                "no estan por separado en la implementación.");
         LocalDate fechaLimite = LocalDate.now();
         //FECHA DE AYER
         LocalDate fechaAyer = LocalDate.now().minusDays(1);
         Tarea tarea1 = new Tarea("Ir al supermercado mañana.",fechaLimite);
         Tarea tarea2 = new Tarea("Consultar repuesto del auto.",fechaAyer);
         Tarea tarea3 = new Tarea("Ir al cine a ver la nueva película de Marvel.",fechaAyer);
-        //tarea2.marcarComoTerminada();
+        tarea2.marcarComoTerminada("Juan Fernandez");
         System.out.println(tarea1.getDescripcion());
         System.out.println(tarea2.getDescripcion());
         System.out.println(tarea3.getDescripcion());
@@ -35,16 +82,17 @@ public class TrabajoPractico {
 
     public void ejercicio6(){
 
-        LocalDate fechaLimite = LocalDate.now();
-        //FECHA DE AYER
-        LocalDate fechaAyer = LocalDate.now().minusDays(1);
-        Tarea tarea1 = new Tarea("Ir al supermercado mañana.",fechaLimite);
-        Tarea tarea2 = new Tarea("Consultar repuesto del auto.",fechaAyer);
-        Tarea tarea3 = new Tarea("Ir al cine a ver la nueva película de Marvel.",fechaAyer);
-        //tarea2.marcarComoTerminada();
-        System.out.println(tarea1.getDescripcion());
-        System.out.println(tarea2.getDescripcion());
-        System.out.println(tarea3.getDescripcion());
+        Libro frankestein = new Libro("Frankestein","Mary Shelley",416,10,27,"978-987-0000");
+        Libro dracula = new Libro("Dracula","Bram Stoker",512,1,12,"978-994-0012");
+        Biblioteca b = new Biblioteca();
+        frankestein.verDescripcion();
+        dracula.verDescripcion();
+        System.out.println("El libro con mayor cant. de páginas es " + mayorCantidadPaginas(dracula,frankestein));
+        dracula.prestar();
+        frankestein.prestar();
+        b.cargar(frankestein);
+        b.cargar(dracula);
+        b.totalPrestamos();
 
     }
 
@@ -125,6 +173,82 @@ public class TrabajoPractico {
         if(fecha1.esMenorQue(fecha3)){
             System.out.println("fecha1 es MENOR que fecha3");
         }
+
+    }
+
+    public void ejercicio10(){
+
+        System.out.println("Aclaración: En la implementacion de las clases ToDoList y Tarea " +
+                "se encuentran los cambios realizados pedidos por los ejercicios 10, 12 y 13. Es decir, " +
+                "no estan por separado en la implementación.");
+        LocalDate fechaLimite = LocalDate.now();
+        LocalDate fechaRecordatorio1 = LocalDate.now().minusMonths(3);
+        LocalDate fechaRecordatorio2 = LocalDate.now().plusMonths(1);
+        Tarea tarea1 = new Tarea("Lavar los platos.",fechaLimite,fechaRecordatorio1);
+        Tarea tarea2 = new Tarea("Arreglar el cuarto.",fechaLimite,fechaRecordatorio2);
+        System.out.println("Prioridad tarea1: "+tarea1.getPrioridad());
+        System.out.println("Prioridad tarea2: "+tarea2.getPrioridad());
+        System.out.println(tarea1.getDescripcion());
+        System.out.println(tarea2.getDescripcion());
+
+    }
+
+    public void ejercicio11(){
+
+        Jugador jugador1 = new Jugador("Martin");
+        Jugador jugador2 = new Jugador("Martina");
+        Diccionario d = new Diccionario();
+        d.addPalabras("Arbol");
+        d.addPalabras("Ojota");
+        d.addPalabras("Xilofon");
+        d.addPalabras("Yacare");
+        d.addPalabras("Kiwi");
+        jugador1.jugar("Kiwi",d);
+        jugador2.jugar("Kwyjibo",d);
+        System.out.println("El puntaje total de " + jugador1.getNombreJugador() + " es de: " + jugador1.getPuntajeTotal() + " ptos.");
+        System.out.println("El puntaje total de " + jugador2.getNombreJugador() + " es de: " + jugador2.getPuntajeTotal() + " ptos.");
+        System.out.println("El ganador es: " + jugador1.getGanador(jugador2).getNombreJugador() + ", con " + jugador1.getGanador(jugador2).getPuntajeTotal() + " ptos.");
+        System.out.print(d);
+        d.removePalabras("Yacare");
+        d.replacePalabra("Arbol","Zanahoria");
+        System.out.println(d);
+
+    }
+
+    public void ejercicio12(){
+
+        ToDoList toDoList = new ToDoList();
+        LocalDate fechaLimite = LocalDate.now();
+        LocalDate fechaLimite2 = LocalDate.now().minusMonths(3);
+        LocalDate fechaLimite3 = LocalDate.now().plusDays(10);
+        Tarea tarea1 = new Tarea("Lavar los platos.",fechaLimite);
+        Tarea tarea2 = new Tarea("Arreglar el cuarto.",fechaLimite);
+        Tarea tarea3 = new Tarea("Cocinar.",fechaLimite);
+        Tarea tarea4 = new Tarea("Estudiar.",fechaLimite);
+        Tarea tarea5 = new Tarea("Encerar.",fechaLimite);
+        toDoList.addTarea(tarea1);
+        toDoList.addTarea(tarea2);
+        toDoList.addTarea(tarea3);
+        toDoList.addTarea(tarea4);
+        toDoList.addTarea(tarea5);
+        toDoList.buscar("Lavar los platos.").marcarComoTerminada("Martin");
+        toDoList.buscar("Cocinar.").marcarComoTerminada("Martin");
+
+    }
+
+    public void ejercicio13(){
+
+        ToDoList toDoList = new ToDoList();
+        LocalDate fechaLimite = LocalDate.now();
+        LocalDate fechaLimite2 = LocalDate.now().minusMonths(3);
+        LocalDate fechaLimite3 = LocalDate.now().plusDays(10);
+/*
+        Tarea tarea1 = new Tarea("Lavar los platos.",fechaLimite,fechaRecordatorio1);
+        Tarea tarea2 = new Tarea("Arreglar el cuarto.",fechaLimite,fechaRecordatorio2);
+        System.out.println("Prioridad tarea1: "+tarea1.getPrioridad());
+        System.out.println("Prioridad tarea2: "+tarea2.getPrioridad());
+        System.out.println(tarea1.getDescripcion());
+        System.out.println(tarea2.getDescripcion());*/
 
     }
 

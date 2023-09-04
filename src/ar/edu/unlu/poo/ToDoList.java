@@ -6,26 +6,14 @@ public class ToDoList {
 
     //Ocultación de la información (Information Hiding)
     private ArrayList<Tarea> toDoList = new ArrayList<>();
-    private ArrayList<Colaborador> colaboradores = new ArrayList<>();
-    private int cantidad = 0;
+    private int longitud = 0;
 
     //INTERFAZ, MÉTODOS
 
     //Agregar()
-    public void addTarea(String descripcion, LocalDate fechaLimite){
-        //Creamos la tarea
-        Tarea nuevaTarea = new Tarea(descripcion,fechaLimite);
-        //La agrego a la lista de tareas
+    public void addTarea(Tarea nuevaTarea){
         toDoList.add(nuevaTarea);
-        cantidad++;
-    }
-
-    public void addTarea(String descripcion, LocalDate fechaLimite, LocalDate fechaRecordatorio){
-        //Creamos la tarea
-        Tarea nuevaTarea = new Tarea(descripcion,fechaLimite,fechaRecordatorio);
-        //La agrego a la lista de tareas
-        toDoList.add(nuevaTarea);
-        cantidad++;
+        longitud++;
     }
 
 
@@ -49,7 +37,7 @@ public class ToDoList {
     public ArrayList<Tarea> getTDLOrdenadaPorPrioridad(){
         ArrayList<Tarea> listaOrdenada = new ArrayList<>();
         Tarea tareaActual = new Tarea("");
-        for(int i = 0; i < cantidad; i++){
+        for(int i = 0; i < longitud; i++){
             tareaActual = toDoList.get(i);
             if(!tareaActual.estaVencida()){
                 listaOrdenada.add(tareaActual);
@@ -63,7 +51,7 @@ public class ToDoList {
     public ArrayList<Tarea> getTDLOrdenadaPorVencimiento(){
         ArrayList<Tarea> listaOrdenada = new ArrayList<>();
         Tarea tareaActual = new Tarea("");
-        for(int i = 0; i < cantidad; i++){
+        for(int i = 0; i < longitud; i++){
             tareaActual = toDoList.get(i);
             if(!tareaActual.estaVencida()){
                 listaOrdenada.add(tareaActual);
@@ -74,12 +62,12 @@ public class ToDoList {
     }
 
 
-    public ArrayList<Tarea> getTDLporColaborador(String colaborador){
+    public ArrayList<Tarea> getTDLporColaborador(String nombreColaborador){
         ArrayList<Tarea> listaPorColaborador = new ArrayList<>();
         Tarea tareaActual = new Tarea("");
-        for(int i = 0; i < cantidad; i++){
+        for(int i = 0; i < longitud; i++){
             tareaActual = toDoList.get(i);
-            if(tareaActual.getColaborador().getNombreColaborador().equals(colaborador)){
+            if(tareaActual.getColaborador().getNombreColaborador().equals(nombreColaborador)){
                 listaPorColaborador.add(tareaActual);
             }
         }
@@ -87,9 +75,21 @@ public class ToDoList {
     }
 
 
-    public boolean addColaborador(String nombreColaborador){
-        if(colaboradores.contains())
+    //MostrarToDoList()
+    public String toString(){
+        String dato = "";
+        Tarea actual = toDoList.get(0);
+        int i = 1;
+        while(i < toDoList.size()){
+            dato = dato + actual.getDescripcion() + ", ";
+            actual = toDoList.get(i);
+            i++;
+        }
+        dato += actual + "\n";;
+        return dato;
     }
+
+
 
 
 }

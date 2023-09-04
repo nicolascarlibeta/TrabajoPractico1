@@ -2,22 +2,23 @@ package ar.edu.unlu.poo;
 import java.time.LocalDate;
 
 public class Tarea {
-    /*  //ESTRUCTURA
+    /*
+    DIAGRAMA DE CLASE <TAREA>
 
-        Descripción
-        Colaborador
-        Estado (Completa e Incompleta)
-        Fecha Límite
-        Fecha de Recordatorio
-        Fecha de Finalización
-        Prioridad
-
-        //COMPORTAMIENTO
-
-        MarcarComoTerminada()
-        estaVencida(): Booleano
-        estaTerminada(): Booleano
-        Getters y Setters (COMUNICACIÓN CON OTRAS CLASES)
+        Tarea
+    ---------------
+    - descripción: String
+    - colaborador
+    - terminada: Boolean
+    - fechaLimite: Date
+    - fechaRecordatorio: Date
+    - fechaFinalizacion: Date
+    - prioridad: enum
+    ----------------
+    + MarcarComoTerminada()
+    + estaVencida(): Boolean
+    + estaTerminada(): Boolean
+    + Getters y Setters (COMUNICACIÓN CON OTRAS CLASES)
 
         */
     private enum Prioridad{
@@ -53,7 +54,7 @@ public class Tarea {
             this.descripcion = "(Vencida) " + descripcion;
         }
         else if(fechaRecordatorio.isAfter(LocalDate.now()) || fechaRecordatorio.isEqual(LocalDate.now())){
-            this.descripcion = "(Por vencer)" + descripcion;
+            this.descripcion = "(Por vencer) " + descripcion;
             prioridad = Prioridad.ALTA;
         }
         else if(terminada){
@@ -135,8 +136,8 @@ public class Tarea {
     //METODOS GENERALES
 
     //MarcarComoTerminada()
-    public void marcarComoTerminada(String colaborador){
-
+    public void marcarComoTerminada(String nombreColaborador){
+        this.colaborador = new Colaborador(nombreColaborador);
         terminada = true;
         fechaFinalizacion = LocalDate.now();
     }
