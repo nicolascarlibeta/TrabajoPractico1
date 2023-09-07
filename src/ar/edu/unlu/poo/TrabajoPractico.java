@@ -73,10 +73,10 @@ public class TrabajoPractico {
         Tarea tarea1 = new Tarea("Ir al supermercado mañana.",fechaLimite);
         Tarea tarea2 = new Tarea("Consultar repuesto del auto.",fechaAyer);
         Tarea tarea3 = new Tarea("Ir al cine a ver la nueva película de Marvel.",fechaAyer);
-        tarea2.marcarComoTerminada("Juan Fernandez");
-        System.out.println(tarea1.getDescripcion());
-        System.out.println(tarea2.getDescripcion());
-        System.out.println(tarea3.getDescripcion());
+        tarea2.marcarComoTerminada("Juan Fernandez",fechaAyer);
+        System.out.print(tarea1);
+        System.out.print(tarea2);
+        System.out.print(tarea3);
 
     }
 
@@ -122,13 +122,13 @@ public class TrabajoPractico {
         Scanner teclado = new Scanner(System.in);
         System.out.print("Por favor, ingrese una longitud para las contraseñas: ");
         longitud = teclado.nextInt();
-        ArrayList<Password> coleccion = new ArrayList<>();
-        Password contra1 = new Password(longitud);
-        Password contra2 = new Password(longitud);
-        Password contra3 = new Password(longitud);
-        Password contra4 = new Password(longitud);
-        Password contra5 = new Password(longitud);
         if(longitud >= 8){
+            ArrayList<Password> coleccion = new ArrayList<>();
+            Password contra1 = new Password(longitud);
+            Password contra2 = new Password(longitud);
+            Password contra3 = new Password(longitud);
+            Password contra4 = new Password(longitud);
+            Password contra5 = new Password(longitud);
             coleccion.add(contra1);
             coleccion.add(contra2);
             coleccion.add(contra3);
@@ -139,6 +139,9 @@ public class TrabajoPractico {
             System.out.println("<" + coleccion.get(2).getPassword() + "> - " + coleccion.get(2).estadoPassword());
             System.out.println("<" + coleccion.get(3).getPassword() + "> - " + coleccion.get(3).estadoPassword());
             System.out.println("<" + coleccion.get(4).getPassword() + "> - " + coleccion.get(4).estadoPassword());
+        }
+        else{
+            System.out.println("<La longitud de las contraseñas deberá de ser de al menos 8 caracteres>");
         }
     }
 
@@ -186,10 +189,10 @@ public class TrabajoPractico {
         LocalDate fechaRecordatorio2 = LocalDate.now().plusMonths(1);
         Tarea tarea1 = new Tarea("Lavar los platos.",fechaLimite,fechaRecordatorio1);
         Tarea tarea2 = new Tarea("Arreglar el cuarto.",fechaLimite,fechaRecordatorio2);
-        System.out.println("Prioridad tarea1: "+tarea1.getPrioridad());
-        System.out.println("Prioridad tarea2: "+tarea2.getPrioridad());
-        System.out.println(tarea1.getDescripcion());
-        System.out.println(tarea2.getDescripcion());
+        System.out.println("Prioridad tarea1: " + tarea1.getPrioridad());
+        System.out.println("Prioridad tarea2: " + tarea2.getPrioridad());
+        System.out.print(tarea1);
+        System.out.print(tarea2);
 
     }
 
@@ -217,10 +220,14 @@ public class TrabajoPractico {
 
     public void ejercicio12(){
 
+        int p = 0;
+        Scanner sc = new Scanner(System.in);
         ToDoList toDoList = new ToDoList();
         LocalDate fechaLimite = LocalDate.now();
         LocalDate fechaLimite2 = LocalDate.now().minusMonths(3);
         LocalDate fechaLimite3 = LocalDate.now().plusDays(10);
+        LocalDate fechaR = LocalDate.now().plusDays(5);
+        LocalDate fechaR2 = LocalDate.now();
         Tarea tarea1 = new Tarea("Lavar los platos.",fechaLimite);
         Tarea tarea2 = new Tarea("Arreglar el cuarto.",fechaLimite);
         Tarea tarea3 = new Tarea("Cocinar.",fechaLimite);
@@ -231,24 +238,50 @@ public class TrabajoPractico {
         toDoList.addTarea(tarea3);
         toDoList.addTarea(tarea4);
         toDoList.addTarea(tarea5);
-        toDoList.buscar("Lavar los platos.").marcarComoTerminada("Martin");
-        toDoList.buscar("Cocinar.").marcarComoTerminada("Martin");
+        toDoList.buscar("Lavar los platos.").marcarComoTerminada("Martin",LocalDate.now());
+        toDoList.buscar("Estudiar.").marcarComoTerminada("Carolina",LocalDate.now());
+        System.out.println("Elija que prioridad desea agregarle a la tarea <Estudiar>: ");
+        System.out.println("");
+        System.out.println("1. ALTA");
+        System.out.println("2. MEDIA");
+        System.out.println("3. BAJA");
+        System.out.print("Teclee un entero entre 1 y 3: ");
+        p = sc.nextInt();
+        toDoList.buscar("Estudiar.").setPrioridad(p);
+        Tarea tarea6 = new Tarea("Pasear.",fechaLimite3,fechaR);
+        Tarea tarea7 = new Tarea("Salir a correr.",fechaLimite3,fechaR2);
+        toDoList.addTarea(tarea6);
+        toDoList.addTarea(tarea7);
+        toDoList.getToDoList();
+        for(int t = 0; t < toDoList.getLongitud(); t++){
+            System.out.print(toDoList.getTarea(t));
+        }
 
     }
 
     public void ejercicio13(){
 
+        String colaborador = "Sebastian";
         ToDoList toDoList = new ToDoList();
         LocalDate fechaLimite = LocalDate.now();
         LocalDate fechaLimite2 = LocalDate.now().minusMonths(3);
         LocalDate fechaLimite3 = LocalDate.now().plusDays(10);
-/*
-        Tarea tarea1 = new Tarea("Lavar los platos.",fechaLimite,fechaRecordatorio1);
-        Tarea tarea2 = new Tarea("Arreglar el cuarto.",fechaLimite,fechaRecordatorio2);
-        System.out.println("Prioridad tarea1: "+tarea1.getPrioridad());
-        System.out.println("Prioridad tarea2: "+tarea2.getPrioridad());
-        System.out.println(tarea1.getDescripcion());
-        System.out.println(tarea2.getDescripcion());*/
+        Tarea tarea1 = new Tarea("Lavar los platos.",fechaLimite);
+        Tarea tarea2 = new Tarea("Arreglar el cuarto.",fechaLimite);
+        Tarea tarea3 = new Tarea("Cocinar.",fechaLimite);
+        Tarea tarea4 = new Tarea("Estudiar.",fechaLimite);
+        Tarea tarea5 = new Tarea("Encerar.",fechaLimite);
+        tarea1.marcarComoTerminada("Martin",LocalDate.now());
+        tarea2.marcarComoTerminada("Sebastian",LocalDate.now());
+        tarea3.marcarComoTerminada("Julia",LocalDate.now());
+        tarea4.marcarComoTerminada("Sebastian",LocalDate.now());
+        tarea5.marcarComoTerminada("Julia",LocalDate.now());
+        toDoList.addTarea(tarea1);
+        toDoList.addTarea(tarea2);
+        toDoList.addTarea(tarea3);
+        toDoList.addTarea(tarea4);
+        toDoList.addTarea(tarea5);
+        toDoList.getTDLporColaborador(colaborador);
 
     }
 

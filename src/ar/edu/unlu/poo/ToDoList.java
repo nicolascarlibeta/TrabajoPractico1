@@ -16,6 +16,14 @@ public class ToDoList {
         longitud++;
     }
 
+    //Getters y Setters
+    public int getLongitud(){
+        return longitud;
+    }
+
+    public Tarea getTarea(int numeroTarea){
+        return toDoList.get(numeroTarea);
+    }
 
     //METODOS GENERALES
 
@@ -34,59 +42,39 @@ public class ToDoList {
     }
 
 
-    public ArrayList<Tarea> getTDLOrdenadaPorPrioridad(){
-        ArrayList<Tarea> listaOrdenada = new ArrayList<>();
+    public void getToDoList(){
+        //Ordenar por PRIORIDAD
         Tarea tareaActual = new Tarea("");
-        for(int i = 0; i < longitud; i++){
-            tareaActual = toDoList.get(i);
-            if(!tareaActual.estaVencida()){
-                listaOrdenada.add(tareaActual);
+        for(int i = 1; i < longitud - 1; i++){
+            for(int k = 0; k < longitud - 1; k++){
+                if(toDoList.get(k).getPrioridad().ordinal() >
+                        toDoList.get(k+1).getPrioridad().ordinal()){
+                    tareaActual = toDoList.get(k);
+                    toDoList.set(k,toDoList.get(k+1));
+                    toDoList.set(k+1,tareaActual);
+                }
+
             }
         }
-        //Ordenar
-        return listaOrdenada;
     }
 
 
-    public ArrayList<Tarea> getTDLOrdenadaPorVencimiento(){
-        ArrayList<Tarea> listaOrdenada = new ArrayList<>();
+    public void getTDLporColaborador(String nombreColaborador){
         Tarea tareaActual = new Tarea("");
+        boolean esta = false;
+        System.out.println("Tareas completadas por " + nombreColaborador + ":");
         for(int i = 0; i < longitud; i++){
             tareaActual = toDoList.get(i);
-            if(!tareaActual.estaVencida()){
-                listaOrdenada.add(tareaActual);
+            if((tareaActual.getColaborador() != null) && (tareaActual.getColaborador().getNombreColaborador().equals(nombreColaborador))){
+                System.out.print(tareaActual);
+                if(!esta){
+                    esta = true;
+                }
             }
         }
-
-        return listaOrdenada;
-    }
-
-
-    public ArrayList<Tarea> getTDLporColaborador(String nombreColaborador){
-        ArrayList<Tarea> listaPorColaborador = new ArrayList<>();
-        Tarea tareaActual = new Tarea("");
-        for(int i = 0; i < longitud; i++){
-            tareaActual = toDoList.get(i);
-            if(tareaActual.getColaborador().getNombreColaborador().equals(nombreColaborador)){
-                listaPorColaborador.add(tareaActual);
-            }
+        if(!esta){
+            System.out.println("<No existe ningun colaborador que coincida con el nombre " + nombreColaborador + ".>");
         }
-        return listaPorColaborador;
-    }
-
-
-    //MostrarToDoList()
-    public String toString(){
-        String dato = "";
-        Tarea actual = toDoList.get(0);
-        int i = 1;
-        while(i < toDoList.size()){
-            dato = dato + actual.getDescripcion() + ", ";
-            actual = toDoList.get(i);
-            i++;
-        }
-        dato += actual + "\n";;
-        return dato;
     }
 
 

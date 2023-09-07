@@ -20,6 +20,7 @@ public class Diccionario {
             o no valida. Para ello, existe el metodo ContieneA(), el cual a traves
             de un mensaje enviado por la Clase Jugador, le enviamos la palabra, mientras
             que el metodo retornara verdadero si la palabra es valida y viceversa.
+            Un diccionario puede estar asociado a MUCHOS JUGADORES.
 
 
             */

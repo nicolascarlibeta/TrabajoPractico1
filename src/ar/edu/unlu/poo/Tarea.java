@@ -1,4 +1,5 @@
 package ar.edu.unlu.poo;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 public class Tarea {
@@ -21,67 +22,38 @@ public class Tarea {
     + Getters y Setters (COMUNICACIÓN CON OTRAS CLASES)
 
         */
-    private enum Prioridad{
+    public enum Prioridad{
         ALTA, MEDIA, BAJA;
     }
     private String descripcion;
     private Colaborador colaborador;
     private boolean terminada;
-    private LocalDate fechaLimite;
-    private LocalDate fechaRecordatorio;
-    private LocalDate fechaFinalizacion;
+    private LocalDate fechaLimite = null;
+    private LocalDate fechaRecordatorio = null;
+    private LocalDate fechaFinalizacion = null;
     private Prioridad prioridad = Prioridad.MEDIA;
 
     //INTERFAZ
 
     //NuevaTarea() (CONSTRUCTORES)
     public Tarea(String descripcion, LocalDate fechaLimite){
-        if(fechaLimite.isBefore(LocalDate.now()) & !terminada){
-            this.descripcion = "(Vencida) " + descripcion;
-        }
-        else if(terminada){
-            this.descripcion = "(Completada) " + descripcion;
-        }
-        else{
-            this.descripcion = descripcion;
-        }
+        this.descripcion = descripcion;
         this.fechaLimite = fechaLimite;
         terminada = false;
     }
 
     public Tarea(String descripcion, LocalDate fechaLimite, LocalDate fechaRecordatorio){
-        if(fechaLimite.isBefore(LocalDate.now()) & !terminada){
-            this.descripcion = "(Vencida) " + descripcion;
-        }
-        else if(fechaRecordatorio.isAfter(LocalDate.now()) || fechaRecordatorio.isEqual(LocalDate.now())){
-            this.descripcion = "(Por vencer) " + descripcion;
+        this.descripcion = descripcion;
+        this.fechaLimite = fechaLimite;
+        if(fechaRecordatorio.isAfter(LocalDate.now()) || fechaRecordatorio.isEqual(LocalDate.now())){
             prioridad = Prioridad.ALTA;
         }
-        else if(terminada){
-            this.descripcion = "(Completada) " + descripcion;
-        }
-        else{
-            this.descripcion = descripcion;
-        }
-        this.fechaLimite = fechaLimite;
         this.fechaRecordatorio = fechaRecordatorio;
         terminada = false;
     }
 
     public Tarea(String descripcion){
-        if(fechaLimite.isBefore(LocalDate.now()) & !terminada){
-            this.descripcion = "(Vencida) " + descripcion;
-        }
-        else if(fechaRecordatorio.isAfter(LocalDate.now()) || fechaRecordatorio.isEqual(LocalDate.now())){
-            this.descripcion = "(Por vencer)" + descripcion;
-            prioridad = Prioridad.ALTA;
-        }
-        else if(terminada){
-            this.descripcion = "(Completada) " + descripcion;
-        }
-        else{
-            this.descripcion = descripcion;
-        }
+        this.descripcion = descripcion;
         terminada = false;
     }
 
@@ -97,13 +69,9 @@ public class Tarea {
 
     //Prioridad
     public void setPrioridad(int p){
-        switch(p){
-            case 1: prioridad = Prioridad.ALTA;
-            break;
-            case 2: prioridad = Prioridad.MEDIA;
-            break;
-            case 3: prioridad = Prioridad.BAJA;
-            break;
+        Prioridad[] pArray = Prioridad.values();
+        if(p >= 1 && p <= 3){
+            prioridad = pArray[p-1];
         }
     }
     public Prioridad getPrioridad(){
@@ -121,10 +89,12 @@ public class Tarea {
     //FechaRecordatorio
     public void setFechaRecordatorio(LocalDate recordatorio){
         if(fechaRecordatorio.isAfter(LocalDate.now()) || fechaRecordatorio.isEqual(LocalDate.now())){
-            this.descripcion = "(Por vencer)" + descripcion;
             prioridad = Prioridad.ALTA;
         }
         fechaRecordatorio = recordatorio;
+    }
+    public LocalDate getFechaRecordatorio(){
+        return fechaRecordatorio;
     }
 
     //Colaborador
@@ -136,10 +106,10 @@ public class Tarea {
     //METODOS GENERALES
 
     //MarcarComoTerminada()
-    public void marcarComoTerminada(String nombreColaborador){
+    public void marcarComoTerminada(String nombreColaborador, LocalDate fechaFinalizacion){
         this.colaborador = new Colaborador(nombreColaborador);
         terminada = true;
-        fechaFinalizacion = LocalDate.now();
+        this.fechaFinalizacion = fechaFinalizacion;
     }
 
 
@@ -153,6 +123,24 @@ public class Tarea {
     //estaTerminada()
     public boolean estaTerminada(){
         return terminada;
+    }
+
+    //MostrarTarea()
+    public String toString(){
+        String descripcion = "";
+        if(fechaLimite.isBefore(LocalDate.now()) & !terminada){
+            descripcion = "(Vencida) " + this.descripcion + " - Fecha Límite: " + fechaLimite + " - " + prioridad + "\n";
+        }
+        else if((fechaRecordatorio != null) && (fechaRecordatorio.isAfter(LocalDate.now()) || fechaRecordatorio.isEqual(LocalDate.now()))){
+            descripcion = "(Por vencer) " + this.descripcion + " - Fecha Límite: " + fechaLimite + " - " + prioridad + "\n";
+        }
+        else if(terminada){
+            descripcion = "(Completada por " + colaborador.getNombreColaborador() + " el dia " + fechaFinalizacion + ") " + this.descripcion + " - " + prioridad + "\n";
+        }
+        else{
+            descripcion = this.descripcion + " - Fecha Límite: " + fechaLimite + " - " + prioridad + "\n";
+        }
+        return descripcion;
     }
 
 

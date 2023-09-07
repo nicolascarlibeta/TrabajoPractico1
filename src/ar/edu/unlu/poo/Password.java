@@ -21,7 +21,7 @@ public class Password {
         */
     private enum Estado{FUERTE, DEBIL};
     private ArrayList<Character> password = new ArrayList<>();
-    private String passwordString = "<indefinida>";
+    private String passwordString = "";
     private int longitud = 8;
 
     //CONSTRUCTOR

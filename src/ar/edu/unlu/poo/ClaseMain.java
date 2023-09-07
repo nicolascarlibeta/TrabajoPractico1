@@ -36,6 +36,11 @@ public class ClaseMain {
         //Ejercicio 11
         //tp1.ejercicio11();
 
+        //Ejercicio 12
+        tp1.ejercicio12();
+
+        //Ejercicio 13
+        tp1.ejercicio13();
 
 
 

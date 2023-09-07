@@ -25,6 +25,7 @@ public class Jugador {
         para verificar que dicha palabra se encuentre alli. Ademas, esta clase
         puede enviar mensajes a otra instancia Jugador para determinar cuales
         de los dos jugadores acumularon mas puntos y determinar quien ganó el juego.
+        Un jugador puede tener asociado un solo diccionario.
 
         */
 
