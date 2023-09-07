@@ -37,12 +37,10 @@ public class ClaseMain {
         //tp1.ejercicio11();
 
         //Ejercicio 12
-        tp1.ejercicio12();
+        //tp1.ejercicio12();
 
         //Ejercicio 13
-        tp1.ejercicio13();
-
-
+        //tp1.ejercicio13();
 
 
 

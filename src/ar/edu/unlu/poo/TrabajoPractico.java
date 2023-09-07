@@ -272,7 +272,7 @@ public class TrabajoPractico {
         Tarea tarea4 = new Tarea("Estudiar.",fechaLimite);
         Tarea tarea5 = new Tarea("Encerar.",fechaLimite);
         tarea1.marcarComoTerminada("Martin",LocalDate.now());
-        tarea2.marcarComoTerminada("Sebastian",LocalDate.now());
+        tarea2.marcarComoTerminada("Sebastian",LocalDate.now().plusDays(1));
         tarea3.marcarComoTerminada("Julia",LocalDate.now());
         tarea4.marcarComoTerminada("Sebastian",LocalDate.now());
         tarea5.marcarComoTerminada("Julia",LocalDate.now());

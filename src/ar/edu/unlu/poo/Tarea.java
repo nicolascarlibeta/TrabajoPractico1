@@ -134,8 +134,11 @@ public class Tarea {
         else if((fechaRecordatorio != null) && (fechaRecordatorio.isAfter(LocalDate.now()) || fechaRecordatorio.isEqual(LocalDate.now()))){
             descripcion = "(Por vencer) " + this.descripcion + " - Fecha Límite: " + fechaLimite + " - " + prioridad + "\n";
         }
+        else if(terminada && fechaLimite.isBefore(fechaFinalizacion)){
+            descripcion = "(Vencida)(Completada por " + colaborador.getNombreColaborador() + " el dia " + fechaFinalizacion + ") " + this.descripcion + " - Fecha Límite: " + fechaLimite + " - " + prioridad + "\n";
+        }
         else if(terminada){
-            descripcion = "(Completada por " + colaborador.getNombreColaborador() + " el dia " + fechaFinalizacion + ") " + this.descripcion + " - " + prioridad + "\n";
+            descripcion = "(Completada por " + colaborador.getNombreColaborador() + " el dia " + fechaFinalizacion + ") " + this.descripcion + " - Fecha Límite: " + fechaLimite + " - " + prioridad + "\n";
         }
         else{
             descripcion = this.descripcion + " - Fecha Límite: " + fechaLimite + " - " + prioridad + "\n";
